@@ -1,0 +1,122 @@
+{#% extends "account/base.html" %#}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <title>ceramic vibes</title>
+    <style>
+        body{
+            background-color: #eceae6;
+        }
+        nav {
+            background-color: #B9C2B9;
+        }
+
+        .myb1 {
+            border: 1px solid #B9C2B9!important;
+            padding-bottom:1.5rem!important;
+        }
+        .btn-secondary:hover {
+            border-color: white!important;
+            background-color:#6A8477;
+            color: white;
+        }
+        .btn-secondary {
+            background-color:#B9C2B9;
+            color: #4E5753;
+            border-color: white!important;
+        }
+    </style>
+</head>
+
+{% load i18n %}
+
+{% block content %}
+
+        <!-- navbar -->
+    <div class="sticky-top" style="font-family: 'Microsoft YaHei UI';">
+        <nav class=" navbar navbar-light navbar navbar-expand-lg text-white" style="padding-bottom: 0px;">
+            <p class="navbar-brand ms-3 text-dark " href="/">
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+                      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+                      crossorigin="anonymous">
+                <img src="https://www.pngkit.com/png/full/265-2654746_stylized-round-ceramic-panel-of-peacock-head-and.png"
+                     style="width:80px;height:80px;color: chartreuse;">
+                <a style="color: #2C1E18; text-decoration: none; a:hover #2C1E18;a:visited #2C1E18;" >Студия керамики ceramic vibes</a>
+        </nav>
+    </div>
+
+
+<p style="color: black; text-align: center; padding-top: 50px; margin-bottom: 0px" >{% blocktrans %}Уже есть аккаунт? Предлагаем <a style="color: #466156; " href="{{ login_url }}">авторизоваться</a>!{% endblocktrans %}</p>
+
+        <div class="container ">
+        <div class="p-3 m-3">
+            <div class="col-lg-5 rounded mx-auto border pt-4 myb1">
+                <div class="text-center col">
+                    <img src="https://imagesvc.meredithcorp.io/v3/mm/image?q=85&c=sc&poi=face&w=4000&h=2000&url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F34%2F2019%2F01%2F12170316%2Fceremic-artist-julie-cloutier-group-shot-0119.jpg" alt="" style="height: 150px">
+                    <!-- <hr> -->
+                    <hr>
+                </div>
+                <h3 class="alert alert-light rounded-pill" style="text-align:center">Регистрация</h3>
+                <form class="signup" method="POST" action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+
+
+
+                    <!-- email -->
+                    <div class="form-group">
+                        <label for="">Почта</label>
+                        <input value="{{ form.email.value|default:'' }}" required type="email" name="email" id=""  class=" form-control-sm form-control" placeholder="Почта">
+                    </div>
+
+
+                 {% if form.email.errors %}
+                    <div class="alert alert-warning">{{ form.email.errors }}</div>
+                 {% endif %}
+                    <!-- имя -->
+                    <div class="form-group">
+                        <label for="">Имя пользователя</label>
+                        <input value="{{ form.username.value|default:'' }}" type="text" name="username" id=""   class="form-control form-control-sm" placeholder="Имя пользователя">
+                    </div>
+
+                 <!-- Вывод ошибок о неверно заполненом поле -->
+
+                {% if form.username.errors %}
+                    <div class="alert alert-warning">{{ form.username.errors }}</div>
+                {% endif %}
+
+                    <!-- password -->
+                    <div class="form-group">
+                        <label for="">Пароль</label>
+                        <input type="password" name="password1" id="" class="form-control form-control-sm" placeholder="Пароль">
+                    </div>
+
+
+                 {% if form.password1.errors %}
+                    <div class="alert alert-warning">{{ form.password1.errors }}</div>
+                  {% endif %}
+                    <!-- password -->
+                    <div class="form-group">
+                        <label for="">Пароль (еще раз)</label>
+                        <input type="password" name="password2" id="" class="form-control form-control-sm" placeholder="Пароль (еще раз)">
+                    </div>
+
+
+                 {% if form.password2.errors %}
+                     <div class="alert alert-warning">{{ form.password2.errors }}</div>
+                  {% endif %}
+                  {% if redirect_field_value %}
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                  {% endif %}
+                   <hr class="c3">
+                    <button type="submit" class="btn btn-sm btn-secondary col-lg-12">Создать аккаунт</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

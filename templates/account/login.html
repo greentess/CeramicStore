@@ -1,0 +1,121 @@
+
+{#% extends "account/base.html" %#}
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <title>ceramic vibes</title>
+    <style>
+        body{
+            background-color: #eceae6;
+        }
+        nav {
+            background-color: #B9C2B9;
+        }
+
+        .myb1 {
+            border: 1px solid #B9C2B9!important;
+            padding-bottom:1.5rem!important;
+        }
+        .btn-secondary:hover {
+            border-color: white!important;
+            background-color:#6A8477;
+            color: white;
+        }
+        .btn-secondary {
+            background-color:#B9C2B9;
+            color: #4E5753;
+            border-color: white!important;
+        }
+    </style>
+</head>
+
+{% load i18n %}
+{% load account %}
+{#socialaccount %}#}
+
+
+{% block content %}
+
+            <!-- navbar -->
+    <div class="sticky-top" style="font-family: 'Microsoft YaHei UI';">
+        <nav class=" navbar navbar-light navbar navbar-expand-lg text-white" style="padding-bottom: 0px;">
+            <p class="navbar-brand ms-3 text-dark " href="/">
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+                      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+                      crossorigin="anonymous">
+                <img src="https://www.pngkit.com/png/full/265-2654746_stylized-round-ceramic-panel-of-peacock-head-and.png"
+                     style="width:80px;height:80px;color: chartreuse;">
+                <a style="color: #2C1E18; text-decoration: none; a:hover #2C1E18;a:visited #2C1E18;" >Студия керамики ceramic vibes</a>
+        </nav>
+    </div>
+
+    <p style="color: black; text-align: center; padding-top: 50px">{% blocktrans %}Если у вас нет аккаунта,
+<a style="color: #466156; " href="{{ signup_url }}">зарегистрируйтесь</a>!{% endblocktrans %}</p>
+
+    <div class="container">
+    <div class="p-3 m-3">
+        <div class="col-lg-5 rounded mx-auto border pt-4 myb1">
+            <div class="text-center col">
+                <img src="https://imagesvc.meredithcorp.io/v3/mm/image?q=85&c=sc&poi=face&w=4000&h=2000&url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F34%2F2019%2F01%2F12170316%2Fceremic-artist-julie-cloutier-group-shot-0119.jpg" alt=""
+                class="" style="height: 150px;">
+            <hr>
+            </div>
+            <h3 class="alert alert-light rounded-pill" style="text-align:center" >Авторизация</h3>
+
+           <form class="login" method="POST" action="{% url 'account_login' %}">
+
+                {% csrf_token %}
+
+                {% if error%}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {% endif %}
+                <!-- имя -->
+                <div class="form-group">
+                    <label for="id_login">Имя пользователя</label>
+                    <input  type="text" name="login" maxlength="150" placeholder="Имя пользователя" autocomplete="username" id="id_login"
+                    class=" form-control-sm form-control">
+                </div>
+                    {% if form.login.errors %}
+                    <div class="alert alert-warning">{{ form.login.errors }}</div>
+                {% endif %}
+
+
+                <!-- password -->
+                <div class="form-group">
+                    <label for="id_password">Пароль</label>
+                    <input type="password"
+                    name="password"
+                    id="id_password"
+                           autocomplete="current-password"
+                           placeholder="Пароль"
+                     class="form-control form-control-sm" >
+                </div>
+                    {% if form.password.errors %}
+                    <div class="alert alert-warning">{{ form.password.errors }}</div>
+                {% endif %}
+
+           <div class="form-group">
+           <label for="id_remember">Запомнить меня:</label>
+           <input type="checkbox" name="remember" id="id_remember">
+            </div>
+{% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <a style="color: #466156; " class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Забыли пароль?" %}</a>
+
+                <hr>
+                <button type="submit" class="btn btn-sm btn-secondary col-lg-12">Войти в систему</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

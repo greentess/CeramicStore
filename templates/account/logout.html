@@ -1,0 +1,78 @@
+{#% extends "account/base.html" %#}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <title>ceramic vibes</title>
+    <style>
+        body{
+            background-color: #eceae6;
+        }
+        nav {
+            background-color: #B9C2B9;
+        }
+
+        .myb1 {
+            border: 1px solid #B9C2B9!important;
+            padding-bottom:1.5rem!important;
+        }
+        .btn-secondary:hover {
+            border-color: #787B79;
+            background-color:#787B79;
+            color: white;
+        }
+        .btn-secondary {
+            background-color:#B9C2B9;
+            color: #4E5753;
+            border-color:  #B9C2B9;
+        }
+        .b:hover{
+           background-color:#6A8477;
+            color: white;
+            border-color: #6A8477!important;
+        }
+
+    </style>
+</head>
+{% load i18n %}
+
+
+{% block content %}
+    <!-- navbar -->
+    <div class="sticky-top" style="font-family: 'Microsoft YaHei UI';">
+        <nav class=" navbar navbar-light navbar navbar-expand-lg text-white" style="padding-bottom: 0px;">
+            <p class="navbar-brand ms-3 text-dark " href="/">
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+                      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+                      crossorigin="anonymous">
+                <img src="https://www.pngkit.com/png/full/265-2654746_stylized-round-ceramic-panel-of-peacock-head-and.png"
+                     style="width:80px;height:80px;color: chartreuse;">
+                <a style="color: #2C1E18; text-decoration: none; a:hover #2C1E18;a:visited #2C1E18;" >Студия керамики ceramic vibes</a>
+        </nav>
+    </div>
+
+   <h3 class="alert alert-light rounded-pill" style="text-align:center">Выход</h3>
+<p style="color: black; text-align: center; padding-top: 50px; margin-bottom: 0px">{% trans 'Вы уверены, что хотите выйти из аккаунта?' %}</p>
+
+<form method="post" action="{% url 'account_logout' %}">
+  {% csrf_token %}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+  {% endif %}
+    <div style="text-align: center; margin-top: 10px">
+  <button class="btn btn-sm btn-secondary col-lg-12" style="width: 160px;" type="submit">{% trans 'Выйти' %}</button>
+    </div>
+</form>
+<p style="color: black; text-align: center; padding-top: 50px; margin-bottom: 0px">{% trans 'Или можете остаться и продолжить свои покупки!' %}</p>
+
+        <div style="text-align:center; margin-top: 10px;">
+  <a href="/about"><button class="btn btn-sm btn-secondary col-lg-12 b" style="width: 160px;" type="submit">{% trans 'Остаться' %}</button></a>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load cart %}
+    {% load custom_filter %}
+    <div class="container">
+        <div class="border rounded p-4 m-4 myb" >
+            {% if request.session.cart.keys|length == 0 %}
+                 <p class="display-4 pl-4 ml-4" style="padding-top: 150px;padding-bottom: 50px;text-align: center">Ваша корзина пуста</p>
+                <div class="m-3 p-3" style="text-align: center">
+                    <a href="/store" class="btn btn-outline-secondary border rounded col-lg-3" style="width: 200px;">Перейти к покупкам</a>
+                </div>
+                {% else %}
+                 <p class="display-4 pl-4 ml-4">Ваша корзина</p>
+                <hr class="c3">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="tdcenter c1">№</th>
+                        <th class="tdcenter c1">Фото</th>
+                        <th class="tdcenter c1">Изделие</th>
+                        <th class="tdcenter c1">Цена</th>
+                        <th class="tdcenter c1">Количество</th>
+                        <th class="tdcenter c1">Сумма</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td><p class="tdcenter tdm80">{{ forloop.counter }}</p></td>
+                            <td><img style="height: 200px;" class="rounded" src="{{ product.image.url }}" alt=""></td>
+                            <td><p class="tdcenter tdm80">{{ product.name }}</p></td>
+                            <td><p class="tdcenter tdm80">{{ product.price}}  ₽</p></td>
+                            <td><p class="tdcenter tdm80">{{ product|cart_quantity:request.session.cart }}</p></td>
+                            <td><p class="tdcenter tdm80">{{ product|price_total:request.session.cart}}  ₽</p></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th colspan="4"></th>
+                        <th class="c1" colspan="">Сумма к оплате: </th>
+                        <th><p class="c1">{{ products|total_cart_price:request.session.cart}}  ₽</p></th>
+                    </tr>
+                    </tfoot>
+                </table>
+                <hr class="c3">
+                <div class="m-3 p-3">
+                    <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-secondary border rounded col-lg-3 float-right">Перейти к оформлению</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+        <!-- modal -->
+        <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Оформление заказа
+                    </h5>
+                    <hr>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="m-2 p-3">
+                        <form action="/check-out" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="">Адрес</label>
+                                <input type="text" name="address" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Телефон</label>
+                                <input type="text" name="phone" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                            </div>
+                            <input type="submit" class="btn float-right btn-secondary col-lg-6" value="Оформить">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

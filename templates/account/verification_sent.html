@@ -1,0 +1,64 @@
+{#% extends "account/base.html" %#}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <title>ceramic vibes</title>
+    <style>
+        body{
+            background-color: #eceae6;
+        }
+        nav {
+            background-color: #B9C2B9;
+        }
+
+        .myb1 {
+            border: 1px solid #B9C2B9!important;
+            padding-bottom:1.5rem!important;
+        }
+        .btn-secondary:hover {
+            border-color: #787B79;
+            background-color:#787B79;
+            color: white;
+        }
+        .btn-secondary {
+            background-color:#B9C2B9;
+            color: #4E5753;
+            border-color:  #B9C2B9;
+        }
+        .b:hover{
+           background-color:#6A8477;
+            color: white;
+            border-color: #6A8477!important;
+        }
+
+    </style>
+</head>
+{% load i18n %}
+
+        <!-- navbar -->
+    <div class="sticky-top" style="font-family: 'Microsoft YaHei UI';">
+        <nav class=" navbar navbar-light navbar navbar-expand-lg text-white" style="padding-bottom: 0px;">
+            <p class="navbar-brand ms-3 text-dark " href="/">
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+                      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+                      crossorigin="anonymous">
+                <img src="https://www.pngkit.com/png/full/265-2654746_stylized-round-ceramic-panel-of-peacock-head-and.png"
+                     style="width:80px;height:80px;color: chartreuse;">
+                <a style="color: #2C1E18; text-decoration: none; a:hover #2C1E18;a:visited #2C1E18;" >Студия керамики ceramic vibes</a>
+        </nav>
+    </div>
+<h3 class="alert alert-light rounded-pill" style="text-align:center">Подтвердите адрес вашей почты</h3>
+
+{% block content %}
+
+    <p style="margin-left: 50px; margin-right: 50px; text-align: justify">{% blocktrans %}Мы отправили  на вашу почту письмо для подтверждения.
+    Пожалуйста, кликните на ссылку в письме. Если вы не видите ваше письмо,
+    то посмотрите папку спама. Свяжитесь с нами, если в письмо не придет в
+    течение нескольких минут.{% endblocktrans %}</p>
+
+{% endblock %}

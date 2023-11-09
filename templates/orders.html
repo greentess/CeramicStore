@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load cart %}
+    {% load custom_filter %}
+    <div class="container">
+        <div class="border-secondary rounded p-4 m-4 myb">
+            <p class="display-4 pl-4 ml-4">Ваши заказы</p>
+            <hr class="c3">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th class="tdcenter c1">№</th>
+                    <th class="tdcenter c1">Фото</th>
+                    <th class="tdcenter c1">Изделие</th>
+                    <th class="tdcenter c1">Дата</th>
+                    <th class="tdcenter c1">Цена</th>
+                    <th class="tdcenter c1">Количество</th>
+                    <th class="tdcenter c1">Сумма</th>
+                    <th class="tdcenter c1">Статус</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td><p class="tdcenter tdm80">{{ forloop.counter }}</p></td>
+                        <td><img style="height: 200px;" class="rounded" src="{{ order.product.image.url }}" alt=""></td>
+                        <td><p class="tdcenter tdm80">{{ order.product.name }}</p></td>
+                        <td><p class="tdcenter tdm80">{{ order.date }}</p></td>
+                        <td><p class="tdcenter tdm80">{{ order.price}}  ₽</p></td>
+                        <td><p class="tdcenter tdm80">{{ order.quantity }}</p></td>
+                        <td><p class="tdcenter tdm80">{{ order.quantity|multiply:order.price}}  ₽</p></td>
+                        {% if order.status %}
+                            <td><small class="badge badge-light tdcenter">Выполнено</small></td>
+                        {% else %}
+                            <td><small class="badge badge-light tdcenter" style="background: #B9C2B9;height: 35px; padding-top: 10px; margin-top: 80px">Рассматривается</small></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

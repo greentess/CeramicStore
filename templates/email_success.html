@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .subtitle2 {
+            position: absolute;
+            text-align: center;
+            line-height: 1em;
+            font-weight: 100;
+            letter-spacing: 0.02rem;
+            color: rgb(69, 84, 64);
+            font-size: 30px;
+            left: 100px;
+            top:180px;
+        }
+
+        .subtitlediv {
+          width: 100%;
+          height: 100%;
+          background-image: url("https://ia.wampi.ru/2022/06/18/image742efe327722e8f0.png") ;
+          background-size:cover;
+          z-index: -10;
+
+        }
+
+
+        .subtitlediv::before {
+          background: #00000034;
+          z-index: 1;
+          position: absolute;
+          content: "";
+          width: 100%;
+          height: 100%;
+        }
+
+        button:focus {
+          outline: none;
+        }
+        ::-webkit-input-placeholder {
+          color: rgba(47, 45, 45, 0.65);
+        }
+
+        .ghost-round {
+            cursor: pointer;
+            background: none;
+            border: 1px solid rgba(85, 100, 78, 0.65);
+            border-radius: 25px;
+            color: rgba(30, 29, 29, 0.65);
+            -webkit-align-self: flex-end;
+            -ms-flex-item-align: end;
+            align-self: flex-end;
+            font-size: 30px;
+            font-family:Helvetica;
+            font-weight: 300;
+            line-height: 2.5em;
+            -webkit-transition: all .2s ease;
+            transition: all .2s ease;
+          }
+
+        .ghost-round:hover {
+          background: #48524C;
+          color: #BFBFBF;
+          -webkit-transition: all .2s ease;
+          transition: all .2s ease;
+        }
+
+        .window {
+            z-index: 100;
+            color: rgb(34, 33, 33);
+            position: relative;
+            display: flex;
+            -webkit-flex-flow: column;
+            -ms-flex-flow: column;
+            flex-flow: column;
+            box-shadow: 0px 15px 50px 10px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+            height: 100vh;
+            width: 100vw;
+            background: #fff;
+          }
+        .rrr {
+            position: absolute;
+            z-index:100 ;
+            left: 200px;
+            top:350px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="window">
+<div class='subtitlediv'>
+        <div class='subtitle2'>
+            <b>Поздравляем! Вы успешно вошли в свой аккаунт! </b>
+        </div>
+</div>
+</div>
+<div class="rrr">
+        <a href="/about"><button class='ghost-round full-width'>Перейти на сайт</button></a>
+    </div>
+</body>
+</html>
