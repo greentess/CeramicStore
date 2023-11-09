@@ -1,4 +1,5 @@
 # CeramicStore
 Создание интернет-магазина гончарных изделий на Django с бд SQLite
 
-<video src='gemoo.com/tools/upload-video/share/581337897608155136?codeId=Pa1g1Jaqeym03&card=581337893606789120&origin=videolinkgenerator' width=180/>
+![image](https://github.com/greentess/CeramicStore/assets/82770256/18f984e4-86e5-4caf-ac0b-42cab080f517)
+
